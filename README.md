@@ -2,11 +2,13 @@
 An attendance report and information system for the teachers and students of IUT.
 
 USERS
+
 -> Admin
 -> Student
 -> Teacher
 
 FEATURES
+
 -> Course Teacher contact information for students.
 -> Attendance Recording digitally for students of a particular course.
 -> Automatic calculation of attendance percentage.
