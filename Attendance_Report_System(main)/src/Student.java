@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 
 import com.mysql.jdbc.ResultSet;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -27,7 +28,9 @@ import net.proteanit.sql.DbUtils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
+import javax.swing.JRadioButton;
 
 
 public class Student extends JFrame {
@@ -37,6 +40,7 @@ public class Student extends JFrame {
 	private JTable table_1;
 	private JTextField coursename;
 	private JScrollPane scrollPane;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -127,6 +131,17 @@ public class Student extends JFrame {
 		});
 		btnSearch.setBounds(343, 131, 89, 23);
 		contentPane.add(btnSearch);
+		
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				home_page window = new home_page();
+				window.frame.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setBounds(746, 29, 89, 23);
+		contentPane.add(btnBack);
 	
 }
 private void ShowData(){
