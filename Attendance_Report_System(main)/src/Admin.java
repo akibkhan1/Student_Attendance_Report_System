@@ -33,6 +33,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
+import java.awt.Color;
 
 
 public class Admin extends JFrame {
@@ -74,8 +75,9 @@ public class Admin extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 543, 496);
+		setBounds(100, 100, 718, 484);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -100,10 +102,13 @@ public class Admin extends JFrame {
 		contentPane.add(password);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setForeground(new Color(255, 255, 255));
+		btnLogin.setBackground(new Color(139, 69, 19));
+		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-					boolean islogin_success;
+					//boolean islogin_success;
 					Class.forName("com.mysql.jdbc.Driver");
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system","root","");
 					Statement stmt=con.createStatement();
@@ -111,25 +116,31 @@ public class Admin extends JFrame {
 					ResultSet rs=(ResultSet) stmt.executeQuery(sql);
 					if(rs.next())
 					{
-						islogin_success=true;
+						//islogin_success=true;
 						create_teach_acc frame = new create_teach_acc();
 						frame.setVisible(true);
 						dispose();
 					}
 					else{
-						islogin_success=false;
+						//islogin_success=false;
 						JOptionPane.showMessageDialog(null, "Incorrect Username/Password");}
 					con.close();
 				} catch(Exception e) {System.out.print(e);}
 			}
 		});
-		btnLogin.setBounds(151, 237, 89, 23);
+		btnLogin.setBounds(151, 237, 89, 33);
 		contentPane.add(btnLogin);
 		
 		JLabel lblAdminLogin = new JLabel("Admin Login");
-		lblAdminLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblAdminLogin.setBounds(68, 54, 172, 23);
+		lblAdminLogin.setForeground(new Color(255, 255, 255));
+		lblAdminLogin.setFont(new Font("Cambria", Font.BOLD, 27));
+		lblAdminLogin.setBounds(68, 33, 198, 62);
 		contentPane.add(lblAdminLogin);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 0, 0));
+		panel.setBounds(0, 0, 706, 106);
+		contentPane.add(panel);
 	
 }
 }

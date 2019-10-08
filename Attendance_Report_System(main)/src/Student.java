@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
+import java.awt.Color;
 
 
 public class Student extends JFrame {
@@ -41,6 +42,7 @@ public class Student extends JFrame {
 	private JTextField coursename;
 	private JScrollPane scrollPane;
 	private JButton btnBack;
+	private JPanel panel;
 
 	/**
 	 * Launch the application.
@@ -75,16 +77,12 @@ public class Student extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 882, 496);
+		setBounds(100, 100, 882, 553);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 240, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Teacher Information");
-		lblNewLabel.setFont(new Font("Sitka Display", Font.BOLD, 19));
-		lblNewLabel.setBounds(364, 59, 204, 41);
-		contentPane.add(lblNewLabel);
 		
 		table = new JTable();
 		table.setBounds(271, 135, 1, 1);
@@ -111,6 +109,8 @@ public class Student extends JFrame {
 		coursename.setColumns(10);
 		
 		JButton btnNewButton = new JButton("SHOW ALL INFO");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setFont(new Font("Sitka Heading", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -124,15 +124,20 @@ public class Student extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnSearch = new JButton("Search");
+		btnSearch.setForeground(new Color(255, 255, 255));
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnSearch.setBackground(new Color(139, 69, 19));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ShowData1();
 			}
 		});
-		btnSearch.setBounds(343, 131, 89, 23);
+		btnSearch.setBounds(343, 131, 89, 29);
 		contentPane.add(btnSearch);
 		
 		btnBack = new JButton("Back");
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(139, 69, 19));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				home_page window = new home_page();
@@ -140,8 +145,20 @@ public class Student extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(746, 29, 89, 23);
+		btnBack.setBounds(767, 423, 89, 23);
 		contentPane.add(btnBack);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(128, 0, 0));
+		panel.setBounds(0, 0, 866, 100);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Faculty Information");
+		lblNewLabel.setBounds(228, 5, 327, 84);
+		panel.add(lblNewLabel);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 27));
 	
 }
 private void ShowData(){
@@ -157,7 +174,7 @@ private void ShowData(){
 	
 		//Class.forName("com.mysql.jdbc.Driver");
 		//Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/Attendenece System", "root","");
-	String query = "select * from teacherinfo";
+	String query = "select Name,Course,Contact_no,Email from teacherinfo";
 		PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
 		
 		ResultSet rs =(ResultSet) st.executeQuery(query);
@@ -188,7 +205,7 @@ private void ShowData1(){
 	
 		//Class.forName("com.mysql.jdbc.Driver");
 		//Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/Attendenece System", "root","");
-	String query = "select * from teacherinfo where Course='"+coursename.getText()+"'";
+	String query = "select Name,Course,Contact_no,Email from teacherinfo where Course='"+coursename.getText()+"'";
 		PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
 		
 		ResultSet rs =(ResultSet) st.executeQuery(query);

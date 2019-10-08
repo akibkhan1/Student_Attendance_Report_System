@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSetMetaData;
@@ -29,6 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.JButton;
+
+
 
 
 
@@ -97,8 +100,9 @@ public class teacherattendence extends JFrame {
             int columns = md.getColumnCount();
 
             //  Get column names
-
-            for (int i = 1; i <= columns; i++)
+        	
+        	
+           for (int i = 1; i <= columns; i++)
             {
                 columnNames.addElement( md.getColumnName(i) );
             }
@@ -161,51 +165,49 @@ public class teacherattendence extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 778);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Teacher Information");
-		lblNewLabel.setFont(new Font("Sitka Display", Font.BOLD, 19));
-		lblNewLabel.setBounds(364, 59, 204, 41);
-		contentPane.add(lblNewLabel);
-		
 		JLabel lblCourse = new JLabel("Course");
-		lblCourse.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCourse.setBounds(153, 135, 46, 14);
+		lblCourse.setFont(new Font("Cambria", Font.PLAIN, 18));
+		lblCourse.setBounds(124, 135, 75, 35);
 		contentPane.add(lblCourse);
 		
 		coursename = new JTextField();
-		coursename.setBounds(209, 134, 122, 20);
+		coursename.setBounds(209, 134, 122, 36);
 		contentPane.add(coursename);
 		coursename.setColumns(10);
 		
 		JButton btnSearch = new JButton("Take Attendence");
+		btnSearch.setFont(new Font("Cambria", Font.PLAIN, 13));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//ShowData1();
 			}
 		});
 		
-		btnSearch.setBounds(723, 148, 135, 23);
+		btnSearch.setBounds(385, 133, 158, 37);
 		contentPane.add(btnSearch);
 		
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//home_page window = new home_page();
-				//window.frame.setVisible(true);
-				//dispose();
+				home_page window = new home_page();
+				window.frame.setVisible(true);
+				dispose();
 			}
 		});
-		btnBack.setBounds(746, 29, 89, 23);
+		btnBack.setBounds(744, 135, 89, 23);
 		contentPane.add(btnBack);
 		
 		table = new JTable(model);
-		table.setBounds(153, 304, 535, 142);
+		table.setBounds(124, 210, 709, 416);
 		contentPane.add(table);
 		
 		JButton btnNewButton = new JButton("SUBMIT");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -213,49 +215,51 @@ public class teacherattendence extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					
 					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
-					String query ="insert into attendance(St.ID,CourseID,Date,Present,Absent,Late) values(?,?,?,?,?,?)";
+					String query ="insert into attendance(StID,CourseID,Date,Present,Absent,Late) values(?,?,?,?,?,?)";
 					PreparedStatement pst =con.prepareStatement(query);
-					DefaultTableModel model=new DefaultTableModel();
-					model.addColumn("Name");
-					model.addColumn("Course");
-					model.addColumn("Contact no.");
-					model.addColumn("Email");
+					
 					for(int i=0;i<rows;i++)
 					{
-						Integer stid =(Integer) table.getValueAt(i, 0);
+						Integer stid = (Integer)table.getValueAt(i,0);
 						Integer cid =(Integer) table.getValueAt(i, 2);
 						Boolean p= (Boolean) table.getValueAt(i,3);
 						Boolean a= (Boolean) table.getValueAt(i,4);
 						Boolean l= (Boolean) table.getValueAt(i,5);
 						
 						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-						String date =sdf.format(dateChooser.getDate());
+						String date =sdf.format(new Date(System.currentTimeMillis()));
 						pst.setInt(1,stid);
 						pst.setInt(2,cid);
-						if(date!=null)
-						{
-						pst.setString(3, date);
-						}
+						pst.setString(3,date);
 						pst.setBoolean(4,p);
 						pst.setBoolean(5,a);
 						pst.setBoolean(6,l);
 						//pst.setString(7, date);
-						pst.execute();
-						con.close();
+						pst.executeUpdate();
 					}
+					con.close();
 					
 					
 				}
 				 catch (Exception e) {
 						e.printStackTrace();
+						System.out.print(e.getMessage());
 					}
 			}
 		});
-		btnNewButton.setBounds(175, 543, 89, 23);
+		btnNewButton.setBounds(153, 648, 89, 35);
 		contentPane.add(btnNewButton);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(550, 148, 91, 20);
-		contentPane.add(dateChooser);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 0, 0));
+		panel.setBounds(0, 0, 897, 103);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Teacher Information");
+		lblNewLabel.setBounds(27, 0, 257, 103);
+		panel.add(lblNewLabel);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 24));
 	}
 }

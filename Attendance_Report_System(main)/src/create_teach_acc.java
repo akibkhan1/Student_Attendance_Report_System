@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 
 import com.mysql.jdbc.ResultSet;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -27,7 +28,14 @@ import net.proteanit.sql.DbUtils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+
+import java.awt.Color;
+
+import javax.swing.UIManager;
 
 
 public class create_teach_acc extends JFrame {
@@ -66,21 +74,67 @@ public class create_teach_acc extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 882, 496);
+		setBounds(100, 100, 638, 520);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCreateTeacher = new JButton("Register Teacher");
+		JButton btnCreateTeacher = new JButton("Register Faculty");
+		btnCreateTeacher.setBackground(new Color(139, 69, 19));
+		btnCreateTeacher.setForeground(new Color(255, 255, 255));
+		btnCreateTeacher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				reg_teacher frame = new reg_teacher();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
 		btnCreateTeacher.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnCreateTeacher.setBounds(313, 136, 237, 51);
+		btnCreateTeacher.setBounds(178, 86, 237, 51);
 		contentPane.add(btnCreateTeacher);
 		
-		JButton btnUpdateTeacherInformation = new JButton("Update Teacher");
+		JButton btnUpdateTeacherInformation = new JButton("Update Faculty");
+		btnUpdateTeacherInformation.setForeground(new Color(255, 255, 255));
+		btnUpdateTeacherInformation.setBackground(new Color(139, 69, 19));
 		btnUpdateTeacherInformation.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnUpdateTeacherInformation.setBounds(313, 263, 237, 51);
+		btnUpdateTeacherInformation.setBounds(178, 162, 237, 51);
 		contentPane.add(btnUpdateTeacherInformation);
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.setForeground(new Color(255, 255, 255));
+		btnHome.setBackground(new Color(139, 69, 19));
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				home_page window = new home_page();
+				window.frame.setVisible(true);
+				dispose();
+			}
+		});
+		btnHome.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnHome.setBounds(178, 408, 237, 51);
+		contentPane.add(btnHome);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(139, 0, 0));
+		panel.setBounds(0, 0, 622, 62);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblAdminPanel = new JLabel("Admin Panel");
+		lblAdminPanel.setForeground(new Color(255, 255, 255));
+		lblAdminPanel.setBounds(10, 11, 206, 42);
+		panel.add(lblAdminPanel);
+		lblAdminPanel.setBackground(Color.CYAN);
+		lblAdminPanel.setFont(new Font("Cambria", Font.BOLD, 35));
+		
+		JButton btnAddStudent = new JButton("Register Student");
+		btnAddStudent.setForeground(Color.WHITE);
+		btnAddStudent.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnAddStudent.setBackground(new Color(139, 69, 19));
+		btnAddStudent.setBounds(178, 235, 237, 51);
+		contentPane.add(btnAddStudent);
 	
 }
 }

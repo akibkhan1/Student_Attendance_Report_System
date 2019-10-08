@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 
 public class home_page {
@@ -26,7 +27,7 @@ public class home_page {
 			public void run() {
 				try{
 					Class.forName("com.mysql.jdbc.Driver");
-					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendence system", "root","");
+					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
 				
 					}catch(Exception e){
 						System.out.println("Error" + e);
@@ -53,8 +54,8 @@ public class home_page {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(143, 188, 143));
-		frame.setBounds(100, 100, 990, 895);
+		frame.getContentPane().setBackground(new Color(250, 250, 210));
+		frame.setBounds(100, 100, 765, 608);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -68,24 +69,24 @@ public class home_page {
 				
 			}
 		});
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(new Color(0, 100, 0));
-		btnNewButton.setFont(new Font("Sitka Heading", Font.BOLD, 15));
-		btnNewButton.setBounds(469, 243, 106, 52);
+		btnNewButton.setForeground(new Color(240, 255, 255));
+		btnNewButton.setBackground(new Color(139, 69, 19));
+		btnNewButton.setFont(new Font("Sitka Heading", Font.BOLD, 25));
+		btnNewButton.setBounds(294, 218, 170, 63);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Teacher");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				Teacher ob= new Teacher();
+				TeacherLogin ob= new TeacherLogin();
 				ob.setVisible(true);
 			}
 		});
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(0, 100, 0));
-		btnNewButton_1.setFont(new Font("Sitka Subheading", Font.BOLD, 16));
-		btnNewButton_1.setBounds(469, 358, 106, 52);
+		btnNewButton_1.setForeground(new Color(245, 255, 250));
+		btnNewButton_1.setBackground(new Color(139, 69, 19));
+		btnNewButton_1.setFont(new Font("Sitka Subheading", Font.BOLD, 25));
+		btnNewButton_1.setBounds(294, 318, 170, 63);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Admin");
@@ -96,30 +97,33 @@ public class home_page {
 				ob.setVisible(true);
 			}
 		});
-		btnNewButton_2.setForeground(Color.WHITE);
-		btnNewButton_2.setBackground(new Color(0, 100, 0));
-		btnNewButton_2.setFont(new Font("Sitka Subheading", Font.BOLD, 16));
-		btnNewButton_2.setBounds(469, 484, 106, 52);
+		btnNewButton_2.setForeground(new Color(245, 255, 250));
+		btnNewButton_2.setBackground(new Color(139, 69, 19));
+		btnNewButton_2.setFont(new Font("Sitka Subheading", Font.BOLD, 25));
+		btnNewButton_2.setBounds(294, 415, 170, 63);
 		frame.getContentPane().add(btnNewButton_2);
-		
-		JLabel lblIutStudentsAttendace = new JLabel("IUT Students' Attendace Report System");
-		lblIutStudentsAttendace.setFont(new Font("Times New Roman", Font.BOLD, 35));
-		lblIutStudentsAttendace.setBounds(177, 94, 610, 41);
-		frame.getContentPane().add(lblIutStudentsAttendace);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Akib\\Desktop\\New folder\\beautiful-line-gradient-blue-pastel-color-abstract-background-paper-texture_50039-644.jpg"));
-		label.setBounds(0, 109, 984, 797);
-		frame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setBounds(178, 11, 46, 14);
 		frame.getContentPane().add(label_1);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Akib\\Desktop\\New folder\\beautiful-line-gradient-blue-pastel-color-abstract-background-paper-texture_50039-644.jpg"));
-		lblNewLabel.setBounds(0, 0, 984, 159);
-		frame.getContentPane().add(lblNewLabel);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(128, 0, 0));
+		panel.setBounds(0, 0, 749, 148);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblIut = new JLabel("IUT");
+		lblIut.setBounds(338, 51, 67, 38);
+		panel.add(lblIut);
+		lblIut.setForeground(new Color(255, 255, 255));
+		lblIut.setFont(new Font("Modern No. 20", Font.BOLD, 35));
+		
+		JLabel lblIutStudentsAttendace = new JLabel("Students' Attendace Report System");
+		lblIutStudentsAttendace.setBounds(109, 85, 561, 41);
+		panel.add(lblIutStudentsAttendace);
+		lblIutStudentsAttendace.setForeground(new Color(255, 255, 255));
+		lblIutStudentsAttendace.setFont(new Font("Modern No. 20", Font.BOLD, 35));
 	}
 	public Color getFrameContentPaneBackground() {
 		return frame.getContentPane().getBackground();
