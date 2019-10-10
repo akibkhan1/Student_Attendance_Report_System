@@ -38,7 +38,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 
 
-public class create_teach_acc extends JFrame {
+public class student_option extends JFrame {
 
 	private JPanel contentPane;
 	/**
@@ -67,7 +67,7 @@ public class create_teach_acc extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public create_teach_acc() {
+	public student_option() {
 		addWindowListener(new WindowAdapter() {
 			public void windowOpened(WindowEvent arg0) {
 				
@@ -79,38 +79,37 @@ public class create_teach_acc extends JFrame {
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JButton btnCreateTeacher = new JButton("Register Faculty");
-		btnCreateTeacher.setBounds(178, 86, 237, 51);
+		JButton btnCreateTeacher = new JButton("Course Registration\r\n");
 		btnCreateTeacher.setBackground(new Color(139, 69, 19));
 		btnCreateTeacher.setForeground(new Color(255, 255, 255));
 		btnCreateTeacher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				reg_teacher frame = new reg_teacher();
+				course_reg frame = new course_reg();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		contentPane.setLayout(null);
 		btnCreateTeacher.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnCreateTeacher.setBounds(178, 128, 237, 51);
 		contentPane.add(btnCreateTeacher);
 		
-		JButton btnUpdateTeacherInformation = new JButton("Course Assignment");
+		JButton btnUpdateTeacherInformation = new JButton("Faculty Information");
 		btnUpdateTeacherInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				t_course_assign frame = new t_course_assign();
+				Student frame = new Student();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnUpdateTeacherInformation.setBounds(178, 162, 237, 51);
 		btnUpdateTeacherInformation.setForeground(new Color(255, 255, 255));
 		btnUpdateTeacherInformation.setBackground(new Color(139, 69, 19));
 		btnUpdateTeacherInformation.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnUpdateTeacherInformation.setBounds(178, 217, 237, 51);
 		contentPane.add(btnUpdateTeacherInformation);
 		
 		JButton btnHome = new JButton("Home");
-		btnHome.setBounds(178, 408, 237, 51);
 		btnHome.setForeground(new Color(255, 255, 255));
 		btnHome.setBackground(new Color(139, 69, 19));
 		btnHome.addActionListener(new ActionListener() {
@@ -121,31 +120,21 @@ public class create_teach_acc extends JFrame {
 			}
 		});
 		btnHome.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnHome.setBounds(178, 408, 237, 51);
 		contentPane.add(btnHome);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 622, 62);
 		panel.setBackground(new Color(139, 0, 0));
+		panel.setBounds(0, 0, 622, 62);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblAdminPanel = new JLabel("Admin Panel");
+		JLabel lblAdminPanel = new JLabel("Student Panel");
 		lblAdminPanel.setForeground(new Color(255, 255, 255));
-		lblAdminPanel.setBounds(10, 11, 206, 42);
+		lblAdminPanel.setBounds(10, 11, 270, 42);
 		panel.add(lblAdminPanel);
 		lblAdminPanel.setBackground(Color.CYAN);
 		lblAdminPanel.setFont(new Font("Cambria", Font.BOLD, 35));
-		
-		JButton btnAddStudent = new JButton("Register Student");
-		btnAddStudent.setBounds(178, 235, 237, 51);
-		btnAddStudent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnAddStudent.setForeground(Color.WHITE);
-		btnAddStudent.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnAddStudent.setBackground(new Color(139, 69, 19));
-		contentPane.add(btnAddStudent);
 	
 }
 }

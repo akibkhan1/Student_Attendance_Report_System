@@ -205,7 +205,7 @@ private void ShowData1(){
 	
 		//Class.forName("com.mysql.jdbc.Driver");
 		//Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/Attendenece System", "root","");
-	String query = "select Name,Course,Contact_no,Email from teacherinfo where Course='"+coursename.getText()+"'";
+		String query = "select Name,Course,Contact_no,Email from teacherinfo where Course='"+coursename.getText()+"'";
 		PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
 		
 		ResultSet rs =(ResultSet) st.executeQuery(query);

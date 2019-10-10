@@ -64,7 +64,7 @@ public class home_page {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				Student ob= new Student();
+				student_option ob= new student_option();
 				ob.setVisible(true);
 				
 			}
@@ -119,8 +119,8 @@ public class home_page {
 		lblIut.setForeground(new Color(255, 255, 255));
 		lblIut.setFont(new Font("Modern No. 20", Font.BOLD, 35));
 		
-		JLabel lblIutStudentsAttendace = new JLabel("Students' Attendace Report System");
-		lblIutStudentsAttendace.setBounds(109, 85, 561, 41);
+		JLabel lblIutStudentsAttendace = new JLabel("Students' Attendance Report System");
+		lblIutStudentsAttendace.setBounds(82, 85, 609, 41);
 		panel.add(lblIutStudentsAttendace);
 		lblIutStudentsAttendace.setForeground(new Color(255, 255, 255));
 		lblIutStudentsAttendace.setFont(new Font("Modern No. 20", Font.BOLD, 35));

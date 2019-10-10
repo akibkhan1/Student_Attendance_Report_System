@@ -24,7 +24,7 @@ import java.sql.Statement;
 import java.awt.Color;
 
 
-public class TeacherLogin extends JFrame {
+public class t_course_assign extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField username;
@@ -37,7 +37,7 @@ public class TeacherLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeacherLogin frame = new TeacherLogin();
+					t_course_assign frame = new t_course_assign();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class TeacherLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TeacherLogin() {
+	public t_course_assign() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 472);
 		contentPane = new JPanel();
@@ -58,10 +58,10 @@ public class TeacherLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTeacherLogin = new JLabel("Teacher Login");
+		JLabel lblTeacherLogin = new JLabel("Course Assignment");
 		lblTeacherLogin.setForeground(new Color(255, 255, 255));
 		lblTeacherLogin.setFont(new Font("Cambria", Font.BOLD, 30));
-		lblTeacherLogin.setBounds(10, 0, 209, 71);
+		lblTeacherLogin.setBounds(10, 0, 350, 71);
 		contentPane.add(lblTeacherLogin);
 		
 		JLabel lblUsername = new JLabel("FacultyID");
@@ -92,11 +92,13 @@ public class TeacherLogin extends JFrame {
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system","root","");
 					Statement stmt=con.createStatement();
 					String sql="Select UserID,Password from teacherinfo where UserID='"+username.getText()+"' and Password='"+password.getText().toString()+"'";
+					String x=username.getText();
+					t_course_assign1 ob=new t_course_assign1(x);
 					ResultSet rs=(ResultSet) stmt.executeQuery(sql);
 					if(rs.next())
 					{
 						islogin_success=true;
-						teacherattendence frame = new teacherattendence();
+						t_course_assign1 frame = new t_course_assign1(x);
 						frame.setVisible(true);
 						dispose();
 						}
