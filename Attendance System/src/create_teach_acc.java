@@ -137,11 +137,11 @@ public class create_teach_acc extends JFrame {
 		lblAdminPanel.setFont(new Font("Cambria", Font.BOLD, 35));
 		
 		JButton btnAddStudent = new JButton("Register Student");
-		btnAddStudent.setBounds(178, 238, 237, 51);
+		btnAddStudent.setBounds(178, 235, 237, 51);
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				student_reg frame = new student_reg();
-				frame.setVisible(true);
+				student_reg window = new student_reg();
+				window.setVisible(true);
 				dispose();
 			}
 		});

@@ -4,6 +4,8 @@ import java.lang.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -46,16 +48,22 @@ import javax.swing.JButton;
 
 
 
+
+
+
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.DefaultComboBoxModel;
 
 import net.proteanit.sql.DbUtils;
 
+import javax.swing.JList;
+import javax.swing.JRadioButton;
+
 
 @SuppressWarnings("serial")
 public class course_reg extends JFrame {
-
+	int a;
 	private JPanel contentPane;
 	private JButton btnBack;
 	private JTable table;
@@ -76,7 +84,8 @@ public class course_reg extends JFrame {
 						System.out.println("Error" + e);
 				}
 				try {
-					teacherattendence frame = new teacherattendence();
+					String x=null;
+					course_reg frame = new course_reg(x);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,12 +97,12 @@ public class course_reg extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public course_reg() {
+	public course_reg(final String x) {
 		
 		Vector<Object> columnNames = new Vector<Object>();
         Vector<Object> data = new Vector<Object>();
 
-        try
+       /* try
         {
             //  Connect to an Access Database
 
@@ -116,7 +125,7 @@ public class course_reg extends JFrame {
             {
                 columnNames.addElement( md.getColumnName(i) );
             }
-            columnNames.addElement("Select");
+           // columnNames.addElement("Select");
 
             //  Get row data
 
@@ -128,7 +137,7 @@ public class course_reg extends JFrame {
                 {
                     row.addElement( rs.getObject(i) );
                 }
-                row.addElement(false);
+               // row.addElement(false);
                 data.addElement( row );
             }
 
@@ -139,11 +148,11 @@ public class course_reg extends JFrame {
         catch(Exception e)
         {
             System.out.println( e );
-        }
+        }*/
 
         //  Create table with database data
 
-        DefaultTableModel model = new DefaultTableModel(data, columnNames)
+       /* DefaultTableModel model = new DefaultTableModel(data, columnNames)
         {
         	@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
@@ -162,7 +171,7 @@ public class course_reg extends JFrame {
 
                 return Object.class;
             }
-        };
+        };*/
 		addWindowListener(new WindowAdapter() {
 			public void windowOpened(WindowEvent arg0) {
 				
@@ -178,7 +187,7 @@ public class course_reg extends JFrame {
 		
 		JLabel lblCourse = new JLabel("Department\r\n");
 		lblCourse.setFont(new Font("Cambria", Font.PLAIN, 18));
-		lblCourse.setBounds(124, 135, 109, 35);
+		lblCourse.setBounds(124, 177, 109, 35);
 		contentPane.add(lblCourse);
 		
 		btnBack = new JButton("Back");
@@ -192,53 +201,6 @@ public class course_reg extends JFrame {
 		btnBack.setBounds(798, 705, 89, 23);
 		contentPane.add(btnBack);
 		
-		table = new JTable(model);
-		table.setBounds(124, 210, 709, 416);
-		contentPane.add(table);
-		
-		JButton btnNewButton = new JButton("Register\r\n");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					int rows=table.getRowCount();
-					Class.forName("com.mysql.jdbc.Driver");
-					
-					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
-					String query ="insert into attendance(StID,CourseID,Date,Present,Absent,Late) values(?,?,?,?,?,?)";
-					PreparedStatement pst =con.prepareStatement(query);
-					
-					for(int i=0;i<rows;i++)
-					{
-						Integer stid = (Integer)table.getValueAt(i,0);
-						Integer cid =(Integer) table.getValueAt(i, 2);
-						Boolean p= (Boolean) table.getValueAt(i,3);
-						Boolean a= (Boolean) table.getValueAt(i,4);
-						Boolean l= (Boolean) table.getValueAt(i,5);
-						
-						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-						String date =sdf.format(new Date(System.currentTimeMillis()));
-						pst.setInt(1,stid);
-						pst.setInt(2,cid);
-						pst.setString(3,date);
-						pst.setBoolean(4,p);
-						pst.setBoolean(5,a);
-						pst.setBoolean(6,l);
-						//pst.setString(7, date);
-						pst.executeUpdate();
-					}
-					con.close();
-					
-					
-				}
-				 catch (Exception e) {
-						e.printStackTrace();
-						System.out.print(e.getMessage());
-					}
-			}
-		});
-		btnNewButton.setBounds(124, 650, 89, 35);
-		contentPane.add(btnNewButton);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 0, 0));
@@ -254,17 +216,17 @@ public class course_reg extends JFrame {
 		
 		final JComboBox dep = new JComboBox();
 		dep.setModel(new DefaultComboBoxModel(new String[] {"CSE", "EEE", "MCE", "CEE", "BTM", "TVE"}));
-		dep.setBounds(244, 114, 109, 20);
+		dep.setBounds(241, 187, 109, 20);
 		contentPane.add(dep);
 		
 		JLabel lblSemester = new JLabel("Semester");
 		lblSemester.setFont(new Font("Cambria", Font.PLAIN, 18));
-		lblSemester.setBounds(386, 135, 109, 35);
+		lblSemester.setBounds(377, 177, 109, 35);
 		contentPane.add(lblSemester);
 		
 		final JComboBox sem = new JComboBox();
 		sem.setModel(new DefaultComboBoxModel(new String[] {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"}));
-		sem.setBounds(475, 114, 94, 20);
+		sem.setBounds(473, 187, 94, 20);
 		contentPane.add(sem);
 		//String query = "select courseid,coursename from course where Department='"+dep.getSelectedItem().toString()+"' and Sem='"+sem.getSelectedItem().toString()+"'";
 		
@@ -334,6 +296,9 @@ public class course_reg extends JFrame {
 		        return (col > 0) ? model.getColumnClass(col - 1) : Boolean.class;
 		    }
 		}
+		JButton btnRegister = new JButton("Register");
+		btnRegister.setBounds(124, 679, 89, 23);
+		contentPane.add(btnRegister);
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -347,13 +312,11 @@ public class course_reg extends JFrame {
 			//table_1.setModel(DbUtils.resultSetToTableModel(rs));
 		
 			
-					TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
-					TableModel wrapperModel = new CheckBoxWrapperTableModel(utilsModel, "Select");
-					table.setModel( wrapperModel );
+				
 					rs.close();
 					st.close();
-					con.close();
-					}catch(Exception e)
+					con.close();}
+				catch(Exception e)
 					{
 						System.out.println("Error" + e);
 						
@@ -363,8 +326,21 @@ public class course_reg extends JFrame {
 		       
 			}
 		});
-		btnSearch.setBounds(602, 144, 89, 23);
+		btnSearch.setBounds(650, 186, 89, 23);
 		contentPane.add(btnSearch);
+		
+		JLabel label = new JLabel();
+		label.setFont(new Font("Tahoma", Font.BOLD, 25));
+		label.setText("Welcome "+x);
+		label.setBounds(10, 114, 285, 35);
+		contentPane.add(label);
+		
+		JRadioButton rdbtnN = new JRadioButton("n");
+		rdbtnN.setBounds(34, 444, 75, 23);
+		contentPane.add(rdbtnN);
+		System.out.print(a);
+		
+		
 		
 	}
 }

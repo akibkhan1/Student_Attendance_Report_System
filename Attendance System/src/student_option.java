@@ -55,7 +55,8 @@ public class student_option extends JFrame {
 						System.out.println("Error" + e);
 				}
 				try {
-					create_teach_acc frame = new create_teach_acc();
+					String y=null;
+					student_option frame = new student_option(y);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +68,7 @@ public class student_option extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public student_option(final String x) {
+	public student_option(final String y) {
 		addWindowListener(new WindowAdapter() {
 			public void windowOpened(WindowEvent arg0) {
 				
@@ -86,13 +87,14 @@ public class student_option extends JFrame {
 		btnCreateTeacher.setForeground(new Color(255, 255, 255));
 		btnCreateTeacher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				course_reg frame = new course_reg();
+				String x=y;
+				c_r frame = new c_r(x);
 				frame.setVisible(true);
 				dispose();
 			}
 		});
 		btnCreateTeacher.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnCreateTeacher.setBounds(178, 189, 237, 51);
+		btnCreateTeacher.setBounds(178, 171, 237, 51);
 		contentPane.add(btnCreateTeacher);
 		
 		JButton btnUpdateTeacherInformation = new JButton("Faculty Information");
@@ -106,7 +108,7 @@ public class student_option extends JFrame {
 		btnUpdateTeacherInformation.setForeground(new Color(255, 255, 255));
 		btnUpdateTeacherInformation.setBackground(new Color(139, 69, 19));
 		btnUpdateTeacherInformation.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnUpdateTeacherInformation.setBounds(178, 275, 237, 51);
+		btnUpdateTeacherInformation.setBounds(178, 246, 237, 51);
 		contentPane.add(btnUpdateTeacherInformation);
 		
 		JButton btnHome = new JButton("Home");
@@ -136,10 +138,26 @@ public class student_option extends JFrame {
 		lblAdminPanel.setBackground(Color.CYAN);
 		lblAdminPanel.setFont(new Font("Cambria", Font.BOLD, 35));
 		
-		JLabel lblNewLabel = new JLabel("WELCOME "+x);
-		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 25));
-		lblNewLabel.setBounds(159, 98, 282, 35);
+		JLabel lblNewLabel = new JLabel();
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel.setText("Welcome "+y);
+		lblNewLabel.setBounds(10, 73, 405, 36);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnOfAttendance = new JButton("% of Attendance");
+		btnOfAttendance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String x=y;
+				percent ob = new percent(x);
+				ob.setVisible(true);
+				dispose();
+			}
+		});
+		btnOfAttendance.setForeground(Color.WHITE);
+		btnOfAttendance.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnOfAttendance.setBackground(new Color(139, 69, 19));
+		btnOfAttendance.setBounds(178, 323, 237, 51);
+		contentPane.add(btnOfAttendance);
 	
 }
 }

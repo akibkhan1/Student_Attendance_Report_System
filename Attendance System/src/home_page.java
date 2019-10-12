@@ -63,10 +63,10 @@ public class home_page {
 		JButton btnNewButton = new JButton("Student");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				frame.dispose();
+				String x=null;
 				student_login ob= new student_login();
 				ob.setVisible(true);
-				frame.dispose();
 				
 			}
 		});
@@ -80,7 +80,8 @@ public class home_page {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				TeacherLogin ob= new TeacherLogin();
+				String x=null;
+				TeacherLogin ob= new TeacherLogin(x);
 				ob.setVisible(true);
 			}
 		});

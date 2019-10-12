@@ -52,7 +52,7 @@ public class t_course_assign1 extends JFrame {
 	 */
 	public t_course_assign1(final String x) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 595, 554);
+		setBounds(100, 100, 649, 554);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,6 +82,7 @@ public class t_course_assign1 extends JFrame {
 		contentPane.add(lblAvailableCourses);
 		
 		final JComboBox a_course = new JComboBox();
+		a_course.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		a_course.setBounds(181, 177, 224, 20);
 		contentPane.add(a_course);
 		
@@ -102,6 +103,9 @@ public class t_course_assign1 extends JFrame {
 			}
 		
 		JButton btnAssignCourse = new JButton("Assign Course");
+		btnAssignCourse.setForeground(new Color(255, 255, 255));
+		btnAssignCourse.setBackground(new Color(139, 69, 19));
+		btnAssignCourse.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnAssignCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -129,7 +133,7 @@ public class t_course_assign1 extends JFrame {
 					}
 			}
 		});
-		btnAssignCourse.setBounds(425, 172, 144, 23);
+		btnAssignCourse.setBounds(425, 172, 198, 39);
 		contentPane.add(btnAssignCourse);
 		
 		

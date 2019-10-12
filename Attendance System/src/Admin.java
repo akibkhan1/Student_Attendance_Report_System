@@ -56,7 +56,7 @@ public class Admin extends JFrame {
 						System.out.println("Error" + e);
 				}
 				try {
-					Student frame = new Student();
+					Admin frame = new Admin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,7 +75,7 @@ public class Admin extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 718, 484);
+		setBounds(100, 100, 472, 484);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,12 +83,12 @@ public class Admin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblUsername.setBounds(68, 157, 72, 14);
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblUsername.setBounds(68, 157, 78, 14);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPassword.setBounds(68, 190, 72, 14);
 		contentPane.add(lblPassword);
 		

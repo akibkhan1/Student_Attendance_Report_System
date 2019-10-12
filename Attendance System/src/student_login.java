@@ -99,7 +99,7 @@ public class student_login extends JFrame {
 					{
 						islogin_success=true;
 						student_option frame = new student_option(x);
-						ob.setVisible(true);
+						frame.setVisible(true);
 						dispose();
 						}
 					

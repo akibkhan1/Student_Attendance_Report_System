@@ -25,7 +25,7 @@ import java.awt.Color;
 
 
 public class TeacherLogin extends JFrame {
-
+	//public String teacher_login_username;
 	private JPanel contentPane;
 	private JTextField username;
 	private JPasswordField password;
@@ -37,7 +37,8 @@ public class TeacherLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeacherLogin frame = new TeacherLogin();
+					String x="abc";
+					TeacherLogin frame = new TeacherLogin(x);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +50,7 @@ public class TeacherLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TeacherLogin() {
+	public TeacherLogin(final String x) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 472);
 		contentPane = new JPanel();
@@ -92,11 +93,13 @@ public class TeacherLogin extends JFrame {
 					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system","root","");
 					Statement stmt=con.createStatement();
 					String sql="Select UserID,Password from teacherinfo where UserID='"+username.getText()+"' and Password='"+password.getText().toString()+"'";
+					String x=username.getText();
+					teacherattendence ob=new teacherattendence(x);
 					ResultSet rs=(ResultSet) stmt.executeQuery(sql);
 					if(rs.next())
 					{
 						islogin_success=true;
-						teacherattendence frame = new teacherattendence();
+						teacherattendence frame = new teacherattendence(x);
 						frame.setVisible(true);
 						dispose();
 						}

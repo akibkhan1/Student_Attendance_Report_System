@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -44,6 +45,9 @@ import javax.swing.JButton;
 
 
 
+
+
+
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.table.TableModel;
@@ -51,16 +55,21 @@ import javax.swing.DefaultComboBoxModel;
 
 import net.proteanit.sql.DbUtils;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 @SuppressWarnings("serial")
 public class teacherattendence extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField coursename;
 	private JButton btnBack;
-	private JTable table;
 	private JDateChooser dateChooser;
 	JButton btnNewButton;
+	private JTable table;
+	private JTextField dte;
+	private JTextField id;
+	private JTextField count;
 
 	/**
 	 * Launch the application.
@@ -76,7 +85,8 @@ public class teacherattendence extends JFrame {
 						System.out.println("Error" + e);
 				}
 				try {
-					teacherattendence frame = new teacherattendence();
+					String x=null;
+					teacherattendence frame = new teacherattendence(x);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,7 +98,7 @@ public class teacherattendence extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public teacherattendence() {
+	public teacherattendence(String x) {
 		
 		
 		addWindowListener(new WindowAdapter() {
@@ -104,123 +114,50 @@ public class teacherattendence extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCourse = new JLabel("Course");
-		lblCourse.setFont(new Font("Cambria", Font.PLAIN, 18));
-		lblCourse.setBounds(124, 135, 75, 35);
+		JLabel lblCourse = new JLabel();
+		lblCourse.setText("Welcome "+x);
+		lblCourse.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblCourse.setBounds(10, 114, 283, 35);
 		contentPane.add(lblCourse);
 		
-		coursename = new JTextField();
-		coursename.setBounds(209, 134, 122, 36);
-		contentPane.add(coursename);
-		coursename.setColumns(10);
+		final JComboBox a_course = new JComboBox();
+		a_course.setBounds(203, 183, 111, 20);
+		contentPane.add(a_course);
 		
-
-		JLabel lblDepartment = new JLabel("Department");
-		lblDepartment.setFont(new Font("Cambria", Font.PLAIN, 18));
-		lblDepartment.setBounds(64, 215, 122, 35);
-		contentPane.add(lblDepartment);
-		
-		final JComboBox dep = new JComboBox();
-		dep.setModel(new DefaultComboBoxModel(new String[] {"CSE", "EEE", "MCE", "CEE", "TVE", "BTM"}));
-		dep.setBounds(184, 225, 112, 20);
-		contentPane.add(dep);
-		
-		JLabel lblSemester = new JLabel("Semester");
-		lblSemester.setFont(new Font("Cambria", Font.PLAIN, 18));
-		lblSemester.setBounds(405, 215, 75, 35);
-		contentPane.add(lblSemester);
-		
-		final JComboBox sem = new JComboBox();
-		sem.setModel(new DefaultComboBoxModel(new String[] {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"}));
-		sem.setBounds(502, 225, 112, 20);
-		contentPane.add(sem);
-		
-		
-		class CheckBoxWrapperTableModel extends AbstractTableModel
-		{
-		    private Map<Integer, Boolean> checkBoxes = new HashMap<Integer, Boolean>();
-
-		    private TableModel model;
-		    private String columnName;
-
-		    public CheckBoxWrapperTableModel(TableModel model, String columnName)
-		    {
-		        this.model = model;
-		        this.columnName = columnName;
-		    }
-
-		    @Override
-		    public String getColumnName(int col)
-		    {
-		        return (col > 0) ? model.getColumnName(col - 1) : columnName;
-		    }
-
-		    public int getRowCount()
-		    {
-		        return model.getRowCount();
-		    }
-
-		    public int getColumnCount()
-		    {
-		        return model.getColumnCount() + 1;
-		    }
-
-		    public Object getValueAt(int row, int col)
-		    {
-		        if (col > 0)
-		            return model.getValueAt(row, col - 1);
-		        else
-		        {
-		            Object value = checkBoxes.get(row);
-		            return (value == null) ? Boolean.FALSE : value;
-		        }
-		    }
-
-		    @Override
-		    public boolean isCellEditable(int row, int col)
-		    {
-		        if (col > 0)
-		            return model.isCellEditable(row, col - 1);
-		        else
-		            return true;
-		    }
-
-		    @Override
-		    public void setValueAt(Object value, int row, int col)
-		    {
-		        if (col > 0)
-		            model.setValueAt(value, row, col - 1);
-		        else
-		            checkBoxes.put(row, (Boolean) value);
-
-		        fireTableCellUpdated(row, col);
-		    }
-
-		    @Override
-		    public Class getColumnClass(int col)
-		    {
-		        return (col > 0) ? model.getColumnClass(col - 1) : Boolean.class;
-		    }
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			int a=-1;
+			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
+			String sql="Select courseid,t_id from course_teacher";
+			PreparedStatement pst =con.prepareStatement(sql);
+			java.sql.ResultSet rs=pst.executeQuery();
+			while(rs.next()){
+				a=x.compareTo(rs.getString("t_id"));
+				if(a==0)
+					a_course.addItem(rs.getString("courseid"));
+			}
+			con.close();
 		}
-		JButton btnSearch = new JButton("Take Attendence");
-		btnSearch.setFont(new Font("Cambria", Font.PLAIN, 13));
+		 catch (Exception e) {
+				e.printStackTrace();
+				System.out.print(e.getMessage());
+			}
+		
+		
+		JButton btnSearch = new JButton("Get student list");
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//ShowData1();
 				
 				try{
+					DefaultTableModel model=new DefaultTableModel();
 					Class.forName("com.mysql.jdbc.Driver");
 					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
-					String query = "select StID,Name from student where Department='"+dep.getSelectedItem().toString()+"' and Semester='"+sem.getSelectedItem().toString()+"'";
-			PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
-			
-			ResultSet rs =(ResultSet) st.executeQuery(query);
-			//table_1.setModel(DbUtils.resultSetToTableModel(rs));
-		
-			
-					TableModel utilsModel = DbUtils.resultSetToTableModel(rs);
-					TableModel wrapperModel = new CheckBoxWrapperTableModel(utilsModel, "Select");
-					table.setModel( wrapperModel );
+					String query = "select St_ID as 'StudentID',courseid as 'CourseID',''as 'Attendance' from course_student where courseid='"+a_course.getSelectedItem().toString()+"'";
+					PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
+					ResultSet rs =(ResultSet) st.executeQuery(query);
+					table.setModel(DbUtils.resultSetToTableModel(rs));
 					rs.close();
 					st.close();
 					con.close();
@@ -232,7 +169,7 @@ public class teacherattendence extends JFrame {
 			}
 		});
 		
-		btnSearch.setBounds(385, 133, 158, 37);
+		btnSearch.setBounds(336, 174, 158, 37);
 		contentPane.add(btnSearch);
 		
 		btnBack = new JButton("Back");
@@ -243,12 +180,8 @@ public class teacherattendence extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(744, 135, 89, 23);
+		btnBack.setBounds(756, 650, 89, 23);
 		contentPane.add(btnBack);
-		
-		table = new JTable();
-		table.setBounds(124, 269, 709, 357);
-		contentPane.add(table);
 		//table.setModel(model);
 		
 		JButton btnNewButton = new JButton("SUBMIT");
@@ -260,25 +193,21 @@ public class teacherattendence extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					
 					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
-					String query ="insert into attendance(StID,CourseID,Date,Present,Absent,Late) values(?,?,?,?,?,?)";
+					String query ="insert into attendance(StID,CourseID,Date,Attendance) values(?,?,?,?)";
 					PreparedStatement pst =con.prepareStatement(query);
 					
 					for(int i=0;i<rows;i++)
 					{
-						Integer stid = (Integer)table.getValueAt(i,0);
+						String stid = (String)table.getValueAt(i,0);
 						String name =(String) table.getValueAt(i, 1);
-						Boolean p= (Boolean) table.getValueAt(i,3);
-						Boolean a= (Boolean) table.getValueAt(i,4);
-						Boolean l= (Boolean) table.getValueAt(i,5);
+						String p= (String) table.getValueAt(i,2);
 						
-						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-						String date =sdf.format(new Date(System.currentTimeMillis()));
-						pst.setInt(1,stid);
-						pst.setString(1,name);
-						pst.setString(3,date);
-						pst.setBoolean(4,p);
-						pst.setBoolean(5,a);
-						pst.setBoolean(6,l);
+						//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						//String date =sdf.format(new Date(System.currentTimeMillis()));
+						pst.setString(1,stid);
+						pst.setString(2,name);
+						pst.setString(3,dte.getText());
+						pst.setString(4,p);
 						//pst.setString(7, date);
 						pst.executeUpdate();
 					}
@@ -292,7 +221,7 @@ public class teacherattendence extends JFrame {
 					}
 			}
 		});
-		btnNewButton.setBounds(153, 648, 89, 35);
+		btnNewButton.setBounds(756, 352, 89, 35);
 		contentPane.add(btnNewButton);
 		
 		JPanel panel = new JPanel();
@@ -306,6 +235,102 @@ public class teacherattendence extends JFrame {
 		panel.add(lblNewLabel);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 24));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				DefaultTableModel model =(DefaultTableModel)table.getModel();
+				int sr=table.getSelectedRow();
+				id.setText(model.getValueAt(sr, 0).toString());
+			}
+		});
+		scrollPane.setBounds(131, 222, 583, 310);
+		contentPane.add(scrollPane);
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int i=table.getSelectedRow();
+				TableModel model=table.getModel();
+				final String c_id=model.getValueAt(i,0).toString();
+				model.setValueAt("Present", i, 2);
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		
+		
+		JLabel lblSelectCourse = new JLabel("Select Course");
+		lblSelectCourse.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSelectCourse.setBounds(82, 180, 111, 23);
+		contentPane.add(lblSelectCourse);
+		
+		JButton btnRegister = new JButton("Register");
+		btnRegister.setBounds(744, 287, 89, 23);
+		contentPane.add(btnRegister);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String date =sdf.format(new Date(System.currentTimeMillis()));
+		dte = new JTextField();
+		dte.setEditable(false);
+		dte.setBounds(599, 183, 111, 20);
+		contentPane.add(dte);
+		dte.setText(date);
+		dte.setColumns(10);
+		
+		JLabel lblDate = new JLabel("DATE");
+		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDate.setBounds(633, 161, 53, 14);
+		contentPane.add(lblDate);
+		
+		id = new JTextField();
+		id.setBounds(146, 616, 129, 20);
+		contentPane.add(id);
+		id.setColumns(10);
+		
+		JButton btnGetAttendance = new JButton("Get Attendance %");
+		btnGetAttendance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
+					String sql="Select count(Attendance) from attendance where StID='"+id.getText()+"' and CourseID='"+a_course.getSelectedItem().toString()+"' and Attendance='Present'";
+					PreparedStatement pst =(PreparedStatement) con.prepareStatement(sql);
+					
+					ResultSet rs =(ResultSet) pst.executeQuery();
+					String sql1="Select count(Attendance) from attendance where StID='"+id.getText()+"' and CourseID='"+a_course.getSelectedItem().toString()+"'";
+					PreparedStatement pst1 =(PreparedStatement) con.prepareStatement(sql1);
+					
+					ResultSet rs1 =(ResultSet) pst1.executeQuery();
+					float c = 0 ,c1 = 0 ;
+					
+					if(rs.next())
+					{
+						 c= rs.getInt("count(Attendance)");
+						//count.setText(c);
+					}
+					if(rs1.next())
+					{
+						c1= rs1.getInt("count(Attendance)");
+						//count.setText(c);
+					}
+					float a=(c/c1)*100;
+					count.setText(String.valueOf(a));
+					}catch(Exception e){
+						System.out.println("Error" + e);
+				}
+			}
+		});
+		btnGetAttendance.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnGetAttendance.setBounds(306, 607, 145, 35);
+		contentPane.add(btnGetAttendance);
+		
+		count = new JTextField();
+		count.setFont(new Font("Tahoma", Font.BOLD, 16));
+		count.setBounds(494, 616, 86, 20);
+		contentPane.add(count);
+		count.setColumns(10);
 		
 	}
 }

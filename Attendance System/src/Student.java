@@ -111,7 +111,7 @@ public class Student extends JFrame {
 		JButton btnNewButton = new JButton("SHOW ALL INFO");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(139, 69, 19));
-		btnNewButton.setFont(new Font("Sitka Heading", Font.BOLD, 15));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -120,7 +120,7 @@ public class Student extends JFrame {
 		}
 		});
 		
-		btnNewButton.setBounds(592, 113, 150, 52);
+		btnNewButton.setBounds(573, 129, 169, 52);
 		contentPane.add(btnNewButton);
 		
 		JButton btnSearch = new JButton("Search");
@@ -145,7 +145,7 @@ public class Student extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(767, 423, 89, 23);
+		btnBack.setBounds(767, 480, 89, 23);
 		contentPane.add(btnBack);
 		
 		panel = new JPanel();
@@ -155,10 +155,10 @@ public class Student extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Faculty Information");
-		lblNewLabel.setBounds(228, 5, 327, 84);
+		lblNewLabel.setBounds(10, 11, 291, 68);
 		panel.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 27));
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 30));
 	
 }
 private void ShowData(){
