@@ -47,6 +47,8 @@ import javax.swing.JButton;
 
 
 
+
+
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.table.TableModel;
@@ -56,6 +58,9 @@ import net.proteanit.sql.DbUtils;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
 
 
 @SuppressWarnings("serial")
@@ -67,6 +72,8 @@ public class teacherattendence extends JFrame {
 	JButton btnNewButton;
 	private JTable table;
 	private JTextField dte;
+	private JTextField id;
+	private JTextField count;
 
 	/**
 	 * Launch the application.
@@ -104,7 +111,7 @@ public class teacherattendence extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 913, 778);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -114,11 +121,11 @@ public class teacherattendence extends JFrame {
 		JLabel lblCourse = new JLabel();
 		lblCourse.setText("Welcome "+x);
 		lblCourse.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblCourse.setBounds(10, 114, 283, 35);
+		lblCourse.setBounds(10, 91, 283, 35);
 		contentPane.add(lblCourse);
 		
 		final JComboBox a_course = new JComboBox();
-		a_course.setBounds(203, 183, 111, 20);
+		a_course.setBounds(132, 155, 111, 20);
 		contentPane.add(a_course);
 		
 		try{
@@ -142,6 +149,10 @@ public class teacherattendence extends JFrame {
 		
 		
 		JButton btnSearch = new JButton("Get student list");
+		btnSearch.setForeground(new Color(255, 255, 255));
+		btnSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSearch.setBackground(new Color(139, 69, 19));
+		btnSearch.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -166,10 +177,15 @@ public class teacherattendence extends JFrame {
 			}
 		});
 		
-		btnSearch.setBounds(336, 174, 158, 37);
+		btnSearch.setBounds(288, 145, 145, 37);
 		contentPane.add(btnSearch);
 		
 		btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setBackground(new Color(139, 69, 19));
+		btnBack.setForeground(new Color(255, 255, 255));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				home_page window = new home_page();
@@ -177,11 +193,15 @@ public class teacherattendence extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(756, 688, 89, 23);
+		btnBack.setBounds(674, 528, 89, 23);
 		contentPane.add(btnBack);
 		//table.setModel(model);
 		
 		JButton btnNewButton = new JButton("SUBMIT");
+		btnNewButton.setBackground(new Color(139, 69, 19));
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -208,6 +228,7 @@ public class teacherattendence extends JFrame {
 						//pst.setString(7, date);
 						pst.executeUpdate();
 					}
+					JOptionPane.showMessageDialog(null, "Attendance Recorded Successfully");
 					con.close();
 					
 					
@@ -218,32 +239,71 @@ public class teacherattendence extends JFrame {
 					}
 			}
 		});
-		btnNewButton.setBounds(153, 648, 89, 35);
+		btnNewButton.setBounds(615, 298, 89, 35);
 		contentPane.add(btnNewButton);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 0, 0));
-		panel.setBounds(0, 0, 897, 103);
+		panel.setBounds(0, 0, 897, 80);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Teacher Information");
-		lblNewLabel.setBounds(27, 0, 257, 103);
+		JLabel lblNewLabel = new JLabel("Attendance Panel");
+		lblNewLabel.setBounds(10, 11, 335, 57);
 		panel.add(lblNewLabel);
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 24));
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 35));
+		
+		final JButton btnAbsent = new JButton("Absent");
+		btnAbsent.setBackground(new Color(255, 0, 0));
+		btnAbsent.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnAbsent.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnAbsent.setForeground(new Color(255, 255, 255));
+		btnAbsent.setFocusPainted(false);
+		final JButton btnPresent = new JButton("Present");
+		btnPresent.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnPresent.setFocusPainted(false);
+		btnPresent.setForeground(new Color(255, 255, 255));
+		btnPresent.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnPresent.setBackground(new Color(0, 128, 0));
+		btnPresent.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(131, 222, 583, 368);
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				DefaultTableModel model =(DefaultTableModel)table.getModel();
+				int sr=table.getSelectedRow();
+				id.setText(model.getValueAt(sr, 0).toString());
+			}
+		});
+		scrollPane.setBounds(22, 186, 583, 335);
 		contentPane.add(scrollPane);
 		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.BOLD, 14));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				int i=table.getSelectedRow();
-				TableModel model=table.getModel();
-				final String c_id=model.getValueAt(i,0).toString();
-				model.setValueAt("Present", i, 2);
+				btnPresent.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						int i=table.getSelectedRow();
+						TableModel model=table.getModel();
+						model.setValueAt("Present", i, 2);
+					}
+				});
+				
+					btnAbsent.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							int i=table.getSelectedRow();
+							TableModel model=table.getModel();
+							final String c_id=model.getValueAt(i,0).toString();
+							model.setValueAt("Absent", i, 2);
+						}
+					});
+					int i=table.getSelectedRow();
+					TableModel model=table.getModel();
+					final String s_id=model.getValueAt(i,0).toString();
+					id.setText(s_id);
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -252,26 +312,109 @@ public class teacherattendence extends JFrame {
 		
 		JLabel lblSelectCourse = new JLabel("Select Course");
 		lblSelectCourse.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSelectCourse.setBounds(82, 180, 111, 23);
+		lblSelectCourse.setBounds(22, 152, 111, 23);
 		contentPane.add(lblSelectCourse);
-		
-		JButton btnRegister = new JButton("Register");
-		btnRegister.setBounds(744, 287, 89, 23);
-		contentPane.add(btnRegister);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String date =sdf.format(new Date(System.currentTimeMillis()));
 		dte = new JTextField();
+		dte.setHorizontalAlignment(SwingConstants.TRAILING);
 		dte.setEditable(false);
-		dte.setBounds(599, 183, 111, 20);
+		dte.setBounds(652, 117, 111, 20);
 		contentPane.add(dte);
 		dte.setText(date);
 		dte.setColumns(10);
 		
 		JLabel lblDate = new JLabel("DATE");
-		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDate.setBounds(633, 161, 53, 14);
+		lblDate.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDate.setBounds(710, 92, 53, 14);
 		contentPane.add(lblDate);
+		
+		id = new JTextField();
+		id.setEditable(false);
+		id.setHorizontalAlignment(SwingConstants.CENTER);
+		id.setBounds(634, 393, 129, 20);
+		contentPane.add(id);
+		id.setColumns(10);
+		
+		JButton btnGetAttendance = new JButton("Get Attendance %");
+		btnGetAttendance.setForeground(new Color(255, 255, 255));
+		btnGetAttendance.setBackground(new Color(139, 69, 19));
+		btnGetAttendance.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGetAttendance.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnGetAttendance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
+					String sql="Select count(Attendance) from attendance where StID='"+id.getText()+"' and CourseID='"+a_course.getSelectedItem().toString()+"' and Attendance='Present'";
+					PreparedStatement pst =(PreparedStatement) con.prepareStatement(sql);
+					
+					ResultSet rs =(ResultSet) pst.executeQuery();
+					String sql1="Select count(Attendance) from attendance where StID='"+id.getText()+"' and CourseID='"+a_course.getSelectedItem().toString()+"'";
+					PreparedStatement pst1 =(PreparedStatement) con.prepareStatement(sql1);
+					
+					ResultSet rs1 =(ResultSet) pst1.executeQuery();
+					float c = 0 ,c1 = 0 ;
+					
+					if(rs.next())
+					{
+						 c= rs.getInt("count(Attendance)");
+						//count.setText(c);
+					}
+					if(rs1.next())
+					{
+						c1= rs1.getInt("count(Attendance)");
+						//count.setText(c);
+					}
+					float a=(c/c1)*100;
+					if(a<75)
+					{
+						count.setForeground(new Color(255, 0, 0));
+						count.setText(String.valueOf(a));
+					}
+					else
+					{
+						count.setForeground(new Color(0, 128, 0));
+						count.setText(String.valueOf(a));
+					}
+					count.setText(String.valueOf(a));
+					}catch(Exception e){
+						System.out.println("Error" + e);
+				}
+			}
+		});
+		btnGetAttendance.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnGetAttendance.setBounds(636, 424, 127, 35);
+		contentPane.add(btnGetAttendance);
+		
+		count = new JTextField();
+		count.setHorizontalAlignment(SwingConstants.RIGHT);
+		count.setEditable(false);
+		count.setFont(new Font("Tahoma", Font.BOLD, 16));
+		count.setBounds(663, 470, 77, 26);
+		contentPane.add(count);
+		count.setColumns(10);
+		
+		
+		
+		btnPresent.setBounds(615, 183, 89, 35);
+		contentPane.add(btnPresent);
+		
+		
+		
+		btnAbsent.setBounds(615, 234, 89, 35);
+		contentPane.add(btnAbsent);
+		
+		JLabel label = new JLabel("%");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label.setBounds(750, 470, 16, 21);
+		contentPane.add(label);
+		
+		JLabel lblStudentid = new JLabel("StudentID");
+		lblStudentid.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblStudentid.setBounds(634, 368, 77, 14);
+		contentPane.add(lblStudentid);
 		
 	}
 }

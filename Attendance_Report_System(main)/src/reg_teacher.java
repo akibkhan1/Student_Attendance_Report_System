@@ -30,6 +30,8 @@ import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import java.awt.Cursor;
 
 
 public class reg_teacher extends JFrame {
@@ -62,7 +64,7 @@ public class reg_teacher extends JFrame {
 	 */
 	public reg_teacher() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 447, 499);
+		setBounds(100, 100, 461, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,7 +73,7 @@ public class reg_teacher extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setName("Select GENDER");
 		panel_1.setBackground(new Color(250, 250, 210));
-		panel_1.setBounds(0, 64, 431, 396);
+		panel_1.setBounds(0, 64, 445, 427);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -87,7 +89,7 @@ public class reg_teacher extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 0, 0));
-		panel.setBounds(0, 0, 431, 64);
+		panel.setBounds(0, 0, 445, 64);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -124,6 +126,8 @@ public class reg_teacher extends JFrame {
 		panel_1.add(pass);
 		
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRegister.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnRegister.setForeground(new Color(255, 255, 255));
 		btnRegister.setBackground(new Color(139, 69, 19));
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -157,11 +161,16 @@ public class reg_teacher extends JFrame {
 					}
 			}
 		});
-		btnRegister.setBounds(169, 318, 112, 32);
+		btnRegister.setBounds(192, 309, 112, 32);
 		panel_1.add(btnRegister);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(332, 362, 89, 23);
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(139, 69, 19));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setBounds(346, 393, 89, 23);
 		panel_1.add(btnBack);
 		
 		JLabel lblallTheFields = new JLabel("*All the fields are required*");

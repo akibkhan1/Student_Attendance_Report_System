@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import java.awt.Cursor;
 
 
 public class home_page {
@@ -55,12 +57,15 @@ public class home_page {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(250, 250, 210));
-		frame.setBounds(100, 100, 765, 608);
+		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		
 		JButton btnNewButton = new JButton("Student");
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -72,11 +77,13 @@ public class home_page {
 		});
 		btnNewButton.setForeground(new Color(240, 255, 255));
 		btnNewButton.setBackground(new Color(139, 69, 19));
-		btnNewButton.setFont(new Font("Sitka Heading", Font.BOLD, 25));
-		btnNewButton.setBounds(294, 218, 170, 63);
+		btnNewButton.setFont(new Font("Garamond", Font.BOLD, 28));
+		btnNewButton.setBounds(227, 134, 170, 63);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Teacher");
+		JButton btnNewButton_1 = new JButton("Faculty");
+		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -87,11 +94,13 @@ public class home_page {
 		});
 		btnNewButton_1.setForeground(new Color(245, 255, 250));
 		btnNewButton_1.setBackground(new Color(139, 69, 19));
-		btnNewButton_1.setFont(new Font("Sitka Subheading", Font.BOLD, 25));
-		btnNewButton_1.setBounds(294, 318, 170, 63);
+		btnNewButton_1.setFont(new Font("Garamond", Font.BOLD, 28));
+		btnNewButton_1.setBounds(227, 236, 170, 63);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Admin");
+		btnNewButton_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -101,8 +110,8 @@ public class home_page {
 		});
 		btnNewButton_2.setForeground(new Color(245, 255, 250));
 		btnNewButton_2.setBackground(new Color(139, 69, 19));
-		btnNewButton_2.setFont(new Font("Sitka Subheading", Font.BOLD, 25));
-		btnNewButton_2.setBounds(294, 415, 170, 63);
+		btnNewButton_2.setFont(new Font("Garamond", Font.BOLD, 28));
+		btnNewButton_2.setBounds(227, 335, 170, 63);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JLabel label_1 = new JLabel("");
@@ -111,21 +120,15 @@ public class home_page {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 0, 0));
-		panel.setBounds(0, 0, 749, 148);
+		panel.setBounds(0, 0, 624, 99);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblIut = new JLabel("IUT");
-		lblIut.setBounds(338, 51, 67, 38);
-		panel.add(lblIut);
-		lblIut.setForeground(new Color(255, 255, 255));
-		lblIut.setFont(new Font("Modern No. 20", Font.BOLD, 35));
-		
-		JLabel lblIutStudentsAttendace = new JLabel("Students' Attendance Report System");
-		lblIutStudentsAttendace.setBounds(82, 85, 609, 41);
+		JLabel lblIutStudentsAttendace = new JLabel("User Selection");
+		lblIutStudentsAttendace.setBounds(10, 28, 237, 41);
 		panel.add(lblIutStudentsAttendace);
 		lblIutStudentsAttendace.setForeground(new Color(255, 255, 255));
-		lblIutStudentsAttendace.setFont(new Font("Modern No. 20", Font.BOLD, 35));
+		lblIutStudentsAttendace.setFont(new Font("Cambria", Font.BOLD, 35));
 	}
 	public Color getFrameContentPaneBackground() {
 		return frame.getContentPane().getBackground();

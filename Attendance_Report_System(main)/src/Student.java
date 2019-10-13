@@ -32,17 +32,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import java.awt.Cursor;
+import javax.swing.border.EtchedBorder;
 
 
 public class Student extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-	private JTable table_1;
 	private JTextField coursename;
-	private JScrollPane scrollPane;
 	private JButton btnBack;
 	private JPanel panel;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -77,38 +78,28 @@ public class Student extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 882, 553);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(250, 240, 230));
+		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		table = new JTable();
-		table.setBounds(271, 135, 1, 1);
-		contentPane.add(table);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(153, 204, 589, 233);
-		contentPane.add(scrollPane_1);
-		
-		scrollPane = new JScrollPane();
-		scrollPane_1.setViewportView(scrollPane);
-		
-		table_1 = new JTable();
-		scrollPane.setViewportView(table_1);
-		
-		JLabel lblCourse = new JLabel("Course");
-		lblCourse.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCourse.setBounds(153, 135, 46, 14);
+		JLabel lblCourse = new JLabel("CourseID");
+		lblCourse.setBounds(55, 135, 70, 14);
+		lblCourse.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(lblCourse);
 		
 		coursename = new JTextField();
-		coursename.setBounds(209, 134, 122, 20);
+		coursename.setBounds(135, 134, 122, 20);
 		contentPane.add(coursename);
 		coursename.setColumns(10);
 		
 		JButton btnNewButton = new JButton("SHOW ALL INFO");
+		btnNewButton.setBounds(504, 116, 169, 52);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(139, 69, 19));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -119,38 +110,43 @@ public class Student extends JFrame {
 				ShowData();
 		}
 		});
-		
-		btnNewButton.setBounds(573, 129, 169, 52);
 		contentPane.add(btnNewButton);
 		
 		JButton btnSearch = new JButton("Search");
+		btnSearch.setBounds(267, 128, 89, 29);
+		btnSearch.setFocusPainted(false);
+		btnSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSearch.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnSearch.setForeground(new Color(255, 255, 255));
-		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSearch.setBackground(new Color(139, 69, 19));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ShowData1();
 			}
 		});
-		btnSearch.setBounds(343, 131, 89, 29);
 		contentPane.add(btnSearch);
 		
 		btnBack = new JButton("Back");
+		btnBack.setBounds(685, 527, 89, 23);
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnBack.setForeground(new Color(255, 255, 255));
 		btnBack.setBackground(new Color(139, 69, 19));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//String x=null;
 				home_page window = new home_page();
 				window.frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnBack.setBounds(767, 480, 89, 23);
 		contentPane.add(btnBack);
 		
 		panel = new JPanel();
+		panel.setBounds(0, 0, 784, 92);
 		panel.setBackground(new Color(128, 0, 0));
-		panel.setBounds(0, 0, 866, 100);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -159,10 +155,18 @@ public class Student extends JFrame {
 		panel.add(lblNewLabel);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 30));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(55, 188, 617, 332);
+		contentPane.add(scrollPane);
+		
+		table_1 = new JTable();
+		scrollPane.setViewportView(table_1);
 	
 }
 private void ShowData(){
 	try{
+		int rows=table_1.getRowCount();
 	Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance report system", "root","");
 	DefaultTableModel model=new DefaultTableModel();
 	model.addColumn("Name");
@@ -174,10 +178,18 @@ private void ShowData(){
 	
 		//Class.forName("com.mysql.jdbc.Driver");
 		//Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/Attendenece System", "root","");
-	String query = "select Name,Course,Contact_no,Email from teacherinfo";
+	//PRoblem is here Nowshin//
+	String query = "select Name,''as 'Course',Contact_no,Email from teacherinfo";
 		PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
-		
+	/*String str="Select userid from teacherinfo";
+		PreparedStatement st1=(PreparedStatement) con.prepareStatement(str);
+		ResultSet rs1=(ResultSet) st1.executeQuery(str);*/
 		ResultSet rs =(ResultSet) st.executeQuery(query);
+		/*while(rs1.next())
+		{
+			String q=rs1.getString("userid");
+			String sql="select courseid from course_teacher where t_id=q";
+		}*/
 		table_1.setModel(DbUtils.resultSetToTableModel(rs));
 	
 		rs.close();
@@ -205,7 +217,8 @@ private void ShowData1(){
 	
 		//Class.forName("com.mysql.jdbc.Driver");
 		//Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/Attendenece System", "root","");
-		String query = "select Name,Course,Contact_no,Email from teacherinfo where Course='"+coursename.getText()+"'";
+	//Problem is here Nowshin//
+		String query = "select Name,''as Course',Contact_no,Email from teacherinfo";
 		PreparedStatement st =(PreparedStatement) con.prepareStatement(query);
 		
 		ResultSet rs =(ResultSet) st.executeQuery(query);

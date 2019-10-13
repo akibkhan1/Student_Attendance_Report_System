@@ -32,6 +32,8 @@ import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import java.awt.Cursor;
 
 
 public class student_reg extends JFrame {
@@ -77,7 +79,7 @@ public class student_reg extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setName("Select GENDER");
 		panel_1.setBackground(new Color(250, 250, 210));
-		panel_1.setBounds(0, 65, 916, 396);
+		panel_1.setBounds(0, 65, 916, 407);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -132,6 +134,8 @@ public class student_reg extends JFrame {
 		panel_1.add(pass);
 		
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRegister.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnRegister.setForeground(new Color(255, 255, 255));
 		btnRegister.setBackground(new Color(139, 69, 19));
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -173,7 +177,12 @@ public class student_reg extends JFrame {
 		panel_1.add(btnRegister);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(817, 362, 89, 23);
+		btnBack.setBackground(new Color(139, 69, 19));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBounds(817, 373, 89, 23);
 		panel_1.add(btnBack);
 		
 		JLabel lblallTheFields = new JLabel("*All the fields are required*");

@@ -25,6 +25,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.border.BevelBorder;
+
+import java.awt.Cursor;
+
 
 public class t_course_assign1 extends JFrame {
 
@@ -52,7 +56,7 @@ public class t_course_assign1 extends JFrame {
 	 */
 	public t_course_assign1(final String x) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 649, 554);
+		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,19 +75,19 @@ public class t_course_assign1 extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel();
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		lblNewLabel_1.setText("Welcome "+x);
-		lblNewLabel_1.setBounds(21, 85, 314, 39);
+		lblNewLabel_1.setBounds(10, 85, 314, 39);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblAvailableCourses = new JLabel("Available Courses");
 		lblAvailableCourses.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAvailableCourses.setBounds(21, 173, 150, 24);
+		lblAvailableCourses.setBounds(10, 174, 150, 24);
 		contentPane.add(lblAvailableCourses);
 		
 		final JComboBox a_course = new JComboBox();
 		a_course.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		a_course.setBounds(181, 177, 224, 20);
+		a_course.setBounds(151, 177, 224, 20);
 		contentPane.add(a_course);
 		
 		try{
@@ -103,6 +107,8 @@ public class t_course_assign1 extends JFrame {
 			}
 		
 		JButton btnAssignCourse = new JButton("Assign Course");
+		btnAssignCourse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAssignCourse.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnAssignCourse.setForeground(new Color(255, 255, 255));
 		btnAssignCourse.setBackground(new Color(139, 69, 19));
 		btnAssignCourse.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -123,7 +129,7 @@ public class t_course_assign1 extends JFrame {
 						pst.setString(2,x);
 						pst.executeUpdate();
 						con.close();
-							JOptionPane.showMessageDialog(null, "Course assigned Successfuly");
+							JOptionPane.showMessageDialog(null, "Course assigned Successfully");
 						
 							
 					}
@@ -133,8 +139,24 @@ public class t_course_assign1 extends JFrame {
 					}
 			}
 		});
-		btnAssignCourse.setBounds(425, 172, 198, 39);
+		btnAssignCourse.setBounds(397, 162, 198, 49);
 		contentPane.add(btnAssignCourse);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				create_teach_acc frame = new create_teach_acc();
+				frame.setVisible(true);
+			}
+		});
+		btnBack.setBackground(new Color(139, 69, 19));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setBounds(525, 407, 89, 23);
+		contentPane.add(btnBack);
 		
 		
 	}

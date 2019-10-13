@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2019 at 06:51 PM
+-- Generation Time: Oct 13, 2019 at 02:36 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -58,7 +58,15 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`StID`, `CourseID`, `Date`, `Attendance`) VALUES
-('170041033', 'CSE4402', '12/10/2019', 'Present');
+('170041001', 'CSE4403', '11/10/2019', 'Present'),
+('170041001', 'CSE4403', '12/10/19', 'Present'),
+('170041001', 'CSE4403', '13/10/2019', 'Absent'),
+('170041002', 'CSE4403', '11/10/2019', 'Present'),
+('170041002', 'CSE4403', '12/10/2019', 'Present'),
+('170041002', 'CSE4403', '13/10/2019', 'Present'),
+('170041043', 'CSE4403', '11/10/2019', 'Absent'),
+('170041043', 'CSE4403', '12/10/2019', 'Absent'),
+('170041043', 'CSE4403', '13/10/2019', 'Present');
 
 -- --------------------------------------------------------
 
@@ -80,6 +88,8 @@ CREATE TABLE `course` (
 INSERT INTO `course` (`CourseID`, `CourseName`, `Department`, `Sem`) VALUES
 ('CSE4303', 'Data Structures', 'CSE', '3rd'),
 ('CSE4402', 'Visual Programming', 'CSE', '4th'),
+('CSE4403', 'Algorithms', 'CSE', '4th'),
+('CSE4404', 'Algorithms Lab', 'CSE', '4th'),
 ('EEE4604', 'Digital Pulse', 'EEE', '6th');
 
 -- --------------------------------------------------------
@@ -98,7 +108,18 @@ CREATE TABLE `course_student` (
 --
 
 INSERT INTO `course_student` (`CourseID`, `St_ID`) VALUES
-('CSE4402', '170041033');
+('CSE4402', '170041001'),
+('CSE4402', '170041002'),
+('CSE4402', '170041003'),
+('CSE4402', '170041004'),
+('CSE4403', '170041001'),
+('CSE4403', '170041002'),
+('CSE4403', '170041003'),
+('CSE4403', '170041004'),
+('CSE4404', '170041001'),
+('CSE4404', '170041002'),
+('CSE4404', '170041003'),
+('CSE4404', '170041004');
 
 -- --------------------------------------------------------
 
@@ -116,10 +137,8 @@ CREATE TABLE `course_teacher` (
 --
 
 INSERT INTO `course_teacher` (`CourseID`, `T_ID`) VALUES
-('CSE4303', 'si51'),
-('CSE4402', '101'),
-('CSE4402', 'H12'),
-('EEE4604', 'H12');
+('CSE4303', '12kushol'),
+('CSE4403', 'Sabbir101');
 
 -- --------------------------------------------------------
 
@@ -163,10 +182,11 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`StID`, `Name`, `Semester`, `Department`, `Contact`, `Email`, `Gender`, `Session`, `Password`) VALUES
-('1230', 'ss', 'EEE', 'EEE', 'sss', 'sss', 'Male', 123, 'aa'),
-('170041033', 'Nowshin Tabassum', '4th', 'CSE', '12345', 'qwert', 'Female', 2017, 'n33'),
-('33', 'Nowshin', '4th', 'CSE', '', '', '', 0, ''),
-('43', 'akib', '4th', 'CSE', '', '', '', 0, '');
+('170041001', 'Anika Tasnim', '4th', 'CSE', '019249035', 'asfa', 'Female', 2017, '1234'),
+('170041002', 'Akib Mahmud Rime', '4th', 'CSE', '35246', 'asd', 'Male', 2017, '1234'),
+('170041003', 'Ali Abir Shuvro', '4th', 'CSE', '235', 'asd', 'Male', 2017, '1234'),
+('170041004', 'Abdullah Abu Sayed', '4th', 'CSE', '20935', 'adsf', 'Male', 2017, '1234'),
+('170041043', 'Akib Khan', '4th', 'CSE', '245', 'asf', 'Male', 2017, '1234');
 
 -- --------------------------------------------------------
 
@@ -177,7 +197,6 @@ INSERT INTO `student` (`StID`, `Name`, `Semester`, `Department`, `Contact`, `Ema
 CREATE TABLE `teacherinfo` (
   `Name` varchar(50) NOT NULL,
   `Department` varchar(50) NOT NULL,
-  `Course` varchar(50) NOT NULL,
   `Contact_no` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `UserID` varchar(50) NOT NULL,
@@ -189,20 +208,21 @@ CREATE TABLE `teacherinfo` (
 -- Dumping data for table `teacherinfo`
 --
 
-INSERT INTO `teacherinfo` (`Name`, `Department`, `Course`, `Contact_no`, `Email`, `UserID`, `Password`, `Gender`) VALUES
-('Sabbir Ahmed', 'EEE', 'CSE4403', '01854904321', 'sabbir_khan@gmail.com', '0', '0', ''),
-('ABCD', 'MCE', 'CSE 4102', '123456', '123456@uhfu', '101', 'abcd', ''),
-('Ridwan Kabir', 'CSE', 'CSE4402', '01234359307', 'mrk@yahoo.com', '102', 'rk', ''),
-('asd', 'MCE', 'cxvxcv', 'agdsg', 'asdasf', '123456', '3413', ''),
-('Nowshin', 'TVE', 'asfaef', 'a30592395', 'akihsoigsjofkwje', '223', 'askfjasf', ''),
-('akib', 'CSE', 'CSE4405', '0159304794', 'khan@gmail.com', '2323', '9090', ''),
-('Fayad ', 'EEE', 'EEE4405', '35235', 'fayad@yahoo.com', '245', 'ikr', ''),
-('Herok', 'MCE', 'MCE4401', '103513850', 'herok@yahoo.com', 'H12', 'herok', ''),
-('Swarupa Islam', 'CSE', 'CSE4407', '0135253567', 'swarupa@gmail.com', 'si51', 'xoxo', 'Female');
+INSERT INTO `teacherinfo` (`Name`, `Department`, `Contact_no`, `Email`, `UserID`, `Password`, `Gender`) VALUES
+('Rafsanjany Kushol', 'CSE', '01530234631', 'kushol@gmail.com', '12kushol', '1234', 'Male'),
+('Safayet Hakim', 'EEE', '01539234691', 'hakim@gmail.com', 'Hakim22', '1234', 'Male'),
+('Ridwan Kabir', 'CSE', '0185930323', 'ridwan@yahoo.com', 'Ridwan303', '1234', 'Male'),
+('Sabbir Ahmed', 'CSE', '0170743291', 'sabbir@gmail.com', 'Sabbir101', '1234', 'Male');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`StID`,`CourseID`,`Date`);
 
 --
 -- Indexes for table `course`

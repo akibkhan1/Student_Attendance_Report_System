@@ -55,6 +55,8 @@ import javax.swing.JButton;
 
 
 
+
+
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.DefaultComboBoxModel;
@@ -66,6 +68,10 @@ import javax.swing.JRadioButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
 
 
 @SuppressWarnings("serial")
@@ -111,7 +117,7 @@ public class c_r extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 913, 778);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -119,7 +125,7 @@ public class c_r extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblCourse = new JLabel("Department\r\n");
-		lblCourse.setBounds(124, 177, 109, 35);
+		lblCourse.setBounds(40, 143, 109, 35);
 		lblCourse.setFont(new Font("Cambria", Font.PLAIN, 18));
 		contentPane.add(lblCourse);
 		
@@ -136,34 +142,42 @@ public class c_r extends JFrame {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 897, 103);
+		panel.setBounds(0, 0, 784, 86);
 		panel.setBackground(new Color(128, 0, 0));
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Course Registration");
-		lblNewLabel.setBounds(27, 0, 257, 103);
+		lblNewLabel.setBounds(10, 11, 320, 64);
 		panel.add(lblNewLabel);
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 24));
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 35));
 		
 		final JComboBox dep = new JComboBox();
-		dep.setBounds(241, 187, 109, 20);
+		dep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		dep.setName("");
+		dep.setBounds(159, 153, 109, 20);
 		dep.setModel(new DefaultComboBoxModel(new String[] {"CSE", "EEE", "MCE", "CEE", "BTM", "TVE"}));
 		contentPane.add(dep);
 		
 		JLabel lblSemester = new JLabel("Semester");
-		lblSemester.setBounds(377, 177, 109, 35);
+		lblSemester.setBounds(313, 143, 94, 35);
 		lblSemester.setFont(new Font("Cambria", Font.PLAIN, 18));
 		contentPane.add(lblSemester);
 		
 		final JComboBox sem = new JComboBox();
-		sem.setBounds(473, 187, 94, 20);
+		sem.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		sem.setBounds(417, 153, 94, 20);
 		sem.setModel(new DefaultComboBoxModel(new String[] {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"}));
 		contentPane.add(sem);
 		
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(650, 186, 89, 23);
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnSearch.setForeground(new Color(255, 255, 255));
+		btnSearch.setBackground(new Color(139, 69, 19));
+		btnSearch.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSearch.setBounds(533, 150, 89, 23);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -190,18 +204,24 @@ public class c_r extends JFrame {
 		contentPane.add(btnSearch);
 		
 		JLabel label = new JLabel();
-		label.setBounds(10, 114, 285, 35);
-		label.setFont(new Font("Tahoma", Font.BOLD, 25));
+		label.setBounds(10, 97, 285, 35);
+		label.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		label.setText("Welcome "+x);
 		contentPane.add(label);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(124, 251, 471, 409);
+		scrollPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		scrollPane.setBounds(40, 189, 583, 361);
 		contentPane.add(scrollPane);
 		
 		final JButton btnRegister = new JButton("Register");
+		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRegister.setFont(new Font("Garamond", Font.PLAIN, 25));
+		btnRegister.setForeground(new Color(255, 255, 255));
+		btnRegister.setBackground(new Color(139, 69, 19));
+		btnRegister.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
-		btnRegister.setBounds(638, 293, 89, 23);
+		btnRegister.setBounds(643, 318, 119, 66);
 		contentPane.add(btnRegister);
 		
 		table_1 = new JTable();
@@ -238,6 +258,24 @@ public class c_r extends JFrame {
 			}
 		});
 		scrollPane.setViewportView(table_1);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setBackground(new Color(139, 69, 19));
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String x=null;
+				student_option window = new student_option(x);
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setBounds(674, 528, 89, 23);
+		contentPane.add(btnBack);
 		
 		
 		//add(new JScrollPane(table_1));

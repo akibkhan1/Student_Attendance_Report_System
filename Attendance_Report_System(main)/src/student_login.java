@@ -22,6 +22,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import java.awt.Cursor;
 
 
 public class student_login extends JFrame {
@@ -51,7 +53,7 @@ public class student_login extends JFrame {
 	 */
 	public student_login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 485, 472);
+		setBounds(100, 100, 461, 530);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 250, 205));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,25 +67,30 @@ public class student_login extends JFrame {
 		contentPane.add(lblTeacherLogin);
 		
 		JLabel lblUsername = new JLabel("Student ID");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblUsername.setBounds(73, 186, 93, 20);
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblUsername.setBounds(43, 186, 93, 20);
 		contentPane.add(lblUsername);
 		
 		username = new JTextField();
-		username.setBounds(192, 186, 166, 20);
+		username.setBounds(146, 186, 131, 20);
 		contentPane.add(username);
 		username.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblPassword.setBounds(73, 241, 93, 20);
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPassword.setBounds(43, 240, 93, 20);
 		contentPane.add(lblPassword);
 		
 		password = new JPasswordField();
-		password.setBounds(192, 241, 166, 20);
+		password.setBounds(146, 240, 131, 20);
 		contentPane.add(password);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLogin.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnLogin.setBackground(new Color(139, 69, 19));
+		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -131,7 +138,7 @@ public class student_login extends JFrame {
 		*/
 		
 		
-		btnLogin.setBounds(192, 334, 89, 23);
+		btnLogin.setBounds(146, 319, 93, 29);
 		contentPane.add(btnLogin);
 		
 		JPanel panel = new JPanel();
@@ -141,6 +148,11 @@ public class student_login extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(139, 69, 19));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				home_page window = new home_page();
@@ -148,7 +160,7 @@ public class student_login extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(375, 399, 84, 23);
+		btnBack.setBounds(351, 457, 84, 23);
 		contentPane.add(btnBack);
 	}
 }

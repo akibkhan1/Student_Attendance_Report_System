@@ -36,6 +36,8 @@ import javax.swing.JTextPane;
 import java.awt.Color;
 
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import java.awt.Cursor;
 
 
 public class student_option extends JFrame {
@@ -75,7 +77,7 @@ public class student_option extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 638, 520);
+		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,6 +85,9 @@ public class student_option extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnCreateTeacher = new JButton("Course Registration\r\n");
+		btnCreateTeacher.setFocusPainted(false);
+		btnCreateTeacher.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCreateTeacher.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnCreateTeacher.setBackground(new Color(139, 69, 19));
 		btnCreateTeacher.setForeground(new Color(255, 255, 255));
 		btnCreateTeacher.addActionListener(new ActionListener() {
@@ -94,10 +99,13 @@ public class student_option extends JFrame {
 			}
 		});
 		btnCreateTeacher.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnCreateTeacher.setBounds(178, 171, 237, 51);
+		btnCreateTeacher.setBounds(191, 142, 237, 51);
 		contentPane.add(btnCreateTeacher);
 		
 		JButton btnUpdateTeacherInformation = new JButton("Faculty Information");
+		btnUpdateTeacherInformation.setFocusPainted(false);
+		btnUpdateTeacherInformation.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnUpdateTeacherInformation.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpdateTeacherInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Student frame = new Student();
@@ -108,10 +116,13 @@ public class student_option extends JFrame {
 		btnUpdateTeacherInformation.setForeground(new Color(255, 255, 255));
 		btnUpdateTeacherInformation.setBackground(new Color(139, 69, 19));
 		btnUpdateTeacherInformation.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnUpdateTeacherInformation.setBounds(178, 246, 237, 51);
+		btnUpdateTeacherInformation.setBounds(191, 216, 237, 51);
 		contentPane.add(btnUpdateTeacherInformation);
 		
 		JButton btnHome = new JButton("Home");
+		btnHome.setFocusPainted(false);
+		btnHome.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHome.setForeground(new Color(255, 255, 255));
 		btnHome.setBackground(new Color(139, 69, 19));
 		btnHome.addActionListener(new ActionListener() {
@@ -122,27 +133,45 @@ public class student_option extends JFrame {
 			}
 		});
 		btnHome.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnHome.setBounds(178, 408, 237, 51);
+		btnHome.setBounds(191, 379, 237, 51);
 		contentPane.add(btnHome);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(139, 0, 0));
-		panel.setBounds(0, 0, 622, 62);
+		panel.setBounds(0, 0, 622, 69);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblAdminPanel = new JLabel("Student Panel");
+		lblAdminPanel.setBounds(10, 11, 200, 42);
 		lblAdminPanel.setForeground(new Color(255, 255, 255));
-		lblAdminPanel.setBounds(10, 11, 270, 42);
 		panel.add(lblAdminPanel);
 		lblAdminPanel.setBackground(Color.CYAN);
-		lblAdminPanel.setFont(new Font("Cambria", Font.BOLD, 35));
+		lblAdminPanel.setFont(new Font("Cambria", Font.BOLD, 30));
 		
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		lblNewLabel.setText("Welcome "+y);
-		lblNewLabel.setBounds(10, 73, 405, 36);
+		lblNewLabel.setBounds(10, 79, 405, 36);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnOfAttendance = new JButton("Attendance %");
+		btnOfAttendance.setFocusPainted(false);
+		btnOfAttendance.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnOfAttendance.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnOfAttendance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String x=y;
+				percent ob = new percent(x);
+				ob.setVisible(true);
+				dispose();
+			}
+		});
+		btnOfAttendance.setForeground(Color.WHITE);
+		btnOfAttendance.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnOfAttendance.setBackground(new Color(139, 69, 19));
+		btnOfAttendance.setBounds(191, 288, 237, 51);
+		contentPane.add(btnOfAttendance);
 	
 }
 }

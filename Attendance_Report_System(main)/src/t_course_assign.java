@@ -22,6 +22,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.awt.Color;
+import java.awt.Cursor;
+
+import javax.swing.border.BevelBorder;
 
 
 public class t_course_assign extends JFrame {
@@ -51,7 +54,7 @@ public class t_course_assign extends JFrame {
 	 */
 	public t_course_assign() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 485, 472);
+		setBounds(100, 100, 461, 530);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 250, 205));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,24 +69,29 @@ public class t_course_assign extends JFrame {
 		
 		JLabel lblUsername = new JLabel("FacultyID");
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblUsername.setBounds(73, 186, 93, 20);
+		lblUsername.setBounds(60, 186, 93, 20);
 		contentPane.add(lblUsername);
 		
 		username = new JTextField();
-		username.setBounds(192, 186, 166, 20);
+		username.setBounds(163, 186, 142, 20);
 		contentPane.add(username);
 		username.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblPassword.setBounds(73, 241, 93, 20);
+		lblPassword.setBounds(60, 241, 93, 20);
 		contentPane.add(lblPassword);
 		
 		password = new JPasswordField();
-		password.setBounds(192, 241, 166, 20);
+		password.setBounds(163, 241, 142, 20);
 		contentPane.add(password);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setBackground(new Color(139, 69, 19));
+		btnLogin.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnLogin.setForeground(new Color(255, 255, 255));
+		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -111,7 +119,7 @@ public class t_course_assign extends JFrame {
 				
 			}
 		});
-		btnLogin.setBounds(192, 334, 89, 23);
+		btnLogin.setBounds(163, 333, 89, 30);
 		contentPane.add(btnLogin);
 		
 		JPanel panel = new JPanel();
@@ -121,14 +129,28 @@ public class t_course_assign extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnBack.setBackground(new Color(139, 69, 19));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				home_page window = new home_page();
-				window.frame.setVisible(true);
+				create_teach_acc frame = new create_teach_acc();
+				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnBack.setBounds(375, 399, 84, 23);
+		btnBack.setBounds(351, 457, 84, 23);
 		contentPane.add(btnBack);
+		
+		JLabel lblLoginAsFaculty = new JLabel("Login as Faculty");
+		lblLoginAsFaculty.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		lblLoginAsFaculty.setBounds(10, 82, 175, 30);
+		contentPane.add(lblLoginAsFaculty);
+		
+		JLabel label = new JLabel("-------------------------------------------");
+		label.setBounds(10, 109, 175, 14);
+		contentPane.add(label);
 	}
 }
